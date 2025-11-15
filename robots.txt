@@ -1,3 +1,4 @@
 User-agent: *
 Disallow:
-Sitemap:https://yourdomain.com/sitemap.xml
+Sitemap:https://alwannasr628.github.io/D.Mahmoud-Ashour/sitemap.xml
+
