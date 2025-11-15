@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دكتور محمود عاشور - الدلنجات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2980b9;
+            --text-color: #333;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+        }
+
+        /* شاشة التحميل */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .loader-logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .loader-text {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background: var(--secondary-color);
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* الماركيه العلوي */
+        .marquee-section {
+            background: var(--accent-color);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee {
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* محتوى الصفحة */
+        .page-content {
+            min-height: 80vh;
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flag-frame {
+            width: 180px;
+            height: 120px;
+            border: 3px solid var(--secondary-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--white);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flag-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        .logo-image {
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+            transition: all 0.5s ease;
+        }
+
+        /* تأثير التكبير عند الهوفر */
+        .flag-frame:hover .logo-image {
+            transform: scale(1.5);
+            z-index: 100;
+        }
+
+        /* وضع التكبير الكامل */
+        .logo-image.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.8);
+            width: 50vw;
+            height: 50vh;
+            max-width: 600px;
+            max-height: 400px;
+            z-index: 9999;
+            object-fit: contain;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            border: 5px solid var(--secondary-color);
+        }
+
+        /* طبقة الخلفية المعتمة */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9998;
+            display: none;
+        }
+
+        .title-container {
+            text-align: center;
+        }
+
+        .page-content h1 {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 25px 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .back-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .back-button i {
+            font-size: 2rem;
+        }
+
+        /* الماركيه السفلي */
+        .marquee-left {
+            animation: marqueeLeft 20s linear infinite;
+        }
+
+        @keyframes marqueeLeft {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .logo-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .flag-frame {
+                width: 150px;
+                height: 100px;
+            }
+            
+            .flag-frame::before {
+                width: 30px;
+            }
+
+            .logo-image.zoomed {
+                width: 90vw;
+                height: 50vh;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            
+            .page-content h1 {
+                font-size: 2rem;
+            }
+            
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-button {
+                padding: 20px 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <div class="loader-text">دكتور محمود عاشور</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- طبقة الخلفية المعتمة -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- الماركيه العلوي -->
+    <div class="marquee-section">
+        <div class="marquee marquee-left">
+            🎯 دكتور محمود عاشور - رجل باحث دكتوراه - الشئون القانونية بالإدارة التعليمية بالدلنجات 🎯
+        </div>
+    </div>
+
+    <!-- محتوى الصفحة -->
+    <div class="page-content">
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="flag-frame">
+                    <img src="logo.png" alt="دكتور محمود عاشور" class="logo-image" id="logoImage">
+                </div>
+            </div>
+            <div class="title-container">
+                <h1>دكتور محمود عاشور</h1>
+                <p class="page-subtitle">رجل باحث دكتوراه - الشئون القانونية بالإدارة التعليمية بالدلنجات</p>
+            </div>
+        </div>
+        
+        <div class="quick-links">
+            <a href="gallery.html" class="back-button">
+                <i class="fas fa-images"></i> معرض الصور
+            </a>
+            <a href="videos.html" class="back-button">
+                <i class="fas fa-video"></i> معرض الفيديوهات
+            </a>
+            <a href="files.html" class="back-button">
+                <i class="fas fa-file-pdf"></i> الملفات والوثائق
+            </a>
+            <a href="about.html" class="back-button">
+                <i class="fas fa-info-circle"></i> نبذة عن الدكتور
+            </a>
+			 <a href="privacy.html" class="back-button">
+                <i class="fas fa-info-circle"></i> سياسة الخصوصية
+            </a>
+		 <a href="Register.html" class="back-button">
+                <i class="fas fa-info-circle"></i> التسجيل للوصول لخدمات الدكتور
+            </a>
+            <a href="contact.html" class="back-button">
+                <i class="fas fa-phone"></i> التواصل والاستشارات
+            </a>
+            <a href="services.html" class="back-button">
+                <i class="fas fa-handshake"></i> خدماتنا
+            </a>
+        </div>
+    </div>
+
+    <!-- الماركيه السفلي -->
+    <div class="marquee-section">
+        <div class="marquee marquee-left">
+            🎯 مصمم الموقع: المهندس نصر علوان 🎯 جميع الحقوق محفوظة 2025 🎯
+        </div>
+    </div>
+
+    <script>
+        // إخفاء شاشة التحميل بعد تحميل الصفحة
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('pageLoader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('pageLoader').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // تكبير الصورة عند النقر
+        const logoImage = document.getElementById('logoImage');
+        const overlay = document.getElementById('overlay');
+
+        logoImage.addEventListener('click', function() {
+            this.classList.toggle('zoomed');
+            overlay.style.display = this.classList.contains('zoomed') ? 'block' : 'none';
+        });
+
+        // إغلاق الصورة المكبرة عند النقر على الخلفية
+        overlay.addEventListener('click', function() {
+            logoImage.classList.remove('zoomed');
+            overlay.style.display = 'none';
+        });
+
+        // إغلاق الصورة المكبرة عند الضغط على زر ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                logoImage.classList.remove('zoomed');
+                overlay.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

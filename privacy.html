@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - دكتور محمود عاشور</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2980b9;
+            --text-color: #333;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+        }
+
+        /* شاشة التحميل */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .loader-logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .loader-text {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background: var(--secondary-color);
+            animation: loading 2s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* الماركيه العلوي */
+        .marquee-section {
+            background: var(--accent-color);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee {
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+            color: var(--white);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* محتوى الصفحة */
+        .page-content {
+            min-height: 80vh;
+            background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+            padding: 40px 20px;
+        }
+
+        .header-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-content h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        /* محتوى سياسة الخصوصية */
+        .privacy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .privacy-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .privacy-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .privacy-section h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-section h2 i {
+            color: var(--secondary-color);
+        }
+
+        .privacy-section p {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .privacy-section ul {
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section li {
+            color: var(--text-color);
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-right: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+
+        .contact-info {
+            background: #d1ecf1;
+            padding: 20px;
+            border-radius: 8px;
+            border-right: 4px solid var(--secondary-color);
+            margin-top: 20px;
+        }
+
+        /* أزرار التنقل */
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .nav-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-button.back {
+            background: #6c757d;
+        }
+
+        .nav-button.back:hover {
+            background: #5a6268;
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .privacy-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .page-content h1 {
+                font-size: 2rem;
+            }
+            
+            .privacy-section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="loader-text">سياسة الخصوصية</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الماركيه العلوي -->
+    <div class="marquee-section">
+        <div class="marquee">
+            🎯 سياسة الخصوصية وحماية البيانات - دكتور محمود عاشور 🎯
+        </div>
+    </div>
+
+    <!-- محتوى الصفحة -->
+    <div class="page-content">
+        <div class="header-container">
+            <h1><i class="fas fa-shield-alt"></i> سياسة الخصوصية</h1>
+            <p class="page-subtitle">حماية بياناتك الشخصية هي أولويتنا الأولى</p>
+        </div>
+        
+        <div class="privacy-container">
+            <!-- المقدمة -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-info-circle"></i> المقدمة</h2>
+                <p>
+                    ترحب بك سياسة الخصوصية هذه وتوضح كيف يقوم موقع دكتور محمود عاشور بجمع واستخدام وحماية معلوماتك الشخصية. نحن ندرك أهمية الخصوصية ونلتزم بحماية بياناتك الشخصية وفقاً لأحدث المعايير الأمنية والقوانين المعمول بها.
+                </p>
+            </div>
+
+            <!-- المعلومات التي نجمعها -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-database"></i> المعلومات التي نجمعها</h2>
+                <p>نقوم بجمع الأنواع التالية من المعلومات:</p>
+                <ul>
+                    <li><strong>المعلومات الشخصية:</strong> الاسم، البريد الإلكتروني، رقم الهاتف</li>
+                    <li><strong>معلومات الملف الشخصي:</strong> نوع المستخدم، التخصص، الاهتمامات</li>
+                    <li><strong>معلومات التقنية:</strong> عنوان IP، نوع المتصفح، نظام التشغيل</li>
+                    <li><strong>معلومات الاستخدام:</strong> الصفحات التي تزورها، وقت الزيارة</li>
+                    <li><strong>معلومات الاتصال:</strong> الرسائل والاستفسارات التي ترسلها</li>
+                </ul>
+            </div>
+
+            <!-- كيفية استخدام المعلومات -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-cogs"></i> كيفية استخدام المعلومات</h2>
+                <p>نستخدم معلوماتك للأغراض التالية:</p>
+                <ul>
+                    <li>توفير الخدمات المطلوبة والاستشارات القانونية</li>
+                    <li>تحسين تجربة المستخدم وتطوير الخدمات</li>
+                    <li>إرسال التحديثات والإشعارات المهمة</li>
+                    <li>تحليل استخدام الموقع وتحسين الأداء</li>
+                    <li>الرد على استفساراتك ورسائلك</li>
+                    <li>الحماية من الاحتيال والأنشطة غير المصرح بها</li>
+                </ul>
+            </div>
+
+            <!-- حماية البيانات -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-lock"></i> حماية البيانات</h2>
+                <p>
+                    نستخدم أحدث التقنيات والإجراءات الأمنية لحماية بياناتك من الوصول غير المصرح به أو التعديل أو الإفشاء أو التدمير. تشمل إجراءات الحماية لدينا:
+                </p>
+                <ul>
+                    <li>تشفير البيانات أثناء النقل والتخزين</li>
+                    <li>جدران الحماية وأنظمة الكشف عن التسلل</li>
+                    <li>الوصول المحدود للموظفين المصرح لهم فقط</li>
+                    <li>مراجعات أمنية منتظمة وتحديثات مستمرة</li>
+                </ul>
+            </div>
+
+            <!-- مشاركة المعلومات -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-share-alt"></i> مشاركة المعلومات</h2>
+                <p>
+                    <strong>نحن لا نبيع أو نؤجر أو نتاجر بمعلوماتك الشخصية لأطراف ثالثة.</strong> قد نشارك معلوماتك في الحالات التالية فقط:
+                </p>
+                <ul>
+                    <li>بموافقتك الصريحة</li>
+                    <لتلبية المتطلبات القانونية أو القضائية</li>
+                    <li>حماية حقوق وملكية الموقع</li>
+                    <li>مع مقدمي الخدمات الذين يعملون نيابة عننا بشروط سرية صارمة</li>
+                </ul>
+            </div>
+
+            <!-- حقوق المستخدم -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-user-check"></i> حقوقك</h2>
+                <p>لديك الحق في:</p>
+                <ul>
+                    <li>الوصول إلى بياناتك الشخصية</li>
+                    <li>تصحيح البيانات غير الدقيقة</li>
+                    <li>حذف بياناتك الشخصية</li>
+                    <li>限制 معالجة بياناتك</li>
+                    <li>اعتراض معالجة بياناتك</li>
+                    <li>تنقل البيانات</li>
+                    <li>سحب الموافقة في أي وقت</li>
+                </ul>
+                
+                <div class="highlight">
+                    <strong>ملاحظة:</strong> لممارسة أي من هذه الحقوق، يرجى الاتصال بنا عبر معلومات التواصل المذكورة أدناه.
+                </div>
+            </div>
+
+            <!-- الكوكيز -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-cookie"></i> ملفات تعريف الارتباط (Cookies)</h2>
+                <p>
+                    نستخدم ملفات تعريف الارتباط لتحسين تجربتك على الموقع. هذه الملفات تساعدنا في:
+                </p>
+                <ul>
+                    <li>تذكر تفضيلاتك وإعداداتك</li>
+                    <li>تحليل استخدام الموقع</li>
+                    <li>توفير المحتوى المخصص</li>
+                    <li>تحسين أداء الموقع</li>
+                </ul>
+                <p>
+                    يمكنك إدارة تفضيلات ملفات تعريف الارتباط من خلال إعدادات المتصفح الخاص بك.
+                </p>
+            </div>
+
+            <!-- التغييرات على السياسة -->
+            <div class="privacy-section">
+                <h2><i class="fas fa-sync-alt"></i> التغييرات على السياسة</h2>
+                <p>
+                    قد نقوم بتحديث هذه السياسة من وقت لآخر. سننشر أي تغييرات على هذه الصفحة وسنخطرك عبر البريد الإلكتروني إذا كانت التغييرات جوهرية. ننصحك بمراجعة هذه السياسة بشكل دوري.
+                </p>
+            </div>
+
+            <!-- معلومات التواصل -->
+            <div class="contact-info">
+                <h3><i class="fas fa-envelope"></i> للاستفسارات حول الخصوصية:</h3>
+                <p>📧 البريد الإلكتروني: privacy@drmahmoudashour.com</p>
+                <p>📞 الهاتف: [رقم الهاتف]</p>
+                <p>📍 العنوان: [عنوان التواصل]</p>
+                <p>🕒 أوقات الاستجابة: 48 ساعة كحد أقصى</p>
+            </div>
+
+            <!-- تاريخ آخر تحديث -->
+            <div class="privacy-section">
+                <p><strong>تاريخ آخر تحديث:</strong> ١٥ يناير ٢٠٢٥</p>
+            </div>
+        </div>
+
+        <!-- أزرار التنقل -->
+        <div class="navigation-buttons">
+            <a href="index.html" class="nav-button back">
+                <i class="fas fa-arrow-right"></i> العودة للرئيسية
+            </a>
+            <a href="terms.html" class="nav-button">
+                <i class="fas fa-file-contract"></i> الشروط والأحكام
+            </a>
+            <a href="contact.html" class="nav-button">
+                <i class="fas fa-headset"></i> اتصل بنا
+            </a>
+        </div>
+    </div>
+
+    <!-- الماركيه السفلي -->
+    <div class="marquee-section">
+        <div class="marquee">
+            🎯 دكتور محمود عاشور - رجل باحث دكتوراه - الشئون القانونية بالإدارة التعليمية بالدلنجات 🎯
+        </div>
+    </div>
+
+    <script>
+        // إخفاء شاشة التحميل بعد تحميل الصفحة
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('pageLoader').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('pageLoader').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // تأثير التمرير السلس للروابط
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+[file content end]
